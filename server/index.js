@@ -1,6 +1,6 @@
-import express from "express";
-import mongoose from "mongoose";
+import express from 'express'
 import bodyParser from "body-parser";
+import mongoose from "mongoose";
 import cors from "cors";
 import dotenv from "dotenv";
 import multer from "multer";
@@ -9,11 +9,11 @@ import morgan from "morgan";
 import path from "path";
 import authRoutes from "./routes/auth.js";
 import { fileURLToPath } from "url";
-import { register } from "./controller/auth";
+import { register } from "./controller/auth.js";
 import { verifyToken } from "./middleware/auth.js";
-import { userRoutes } from "./routes/users";
-import { postRoutes } from "./routes/posts";
-import { createPost } from "./controller/posts"
+import  userRoutes  from "./routes/users.js";
+import  postRoutes  from "./routes/posts.js";
+import { createPost } from "./controller/posts.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -35,10 +35,10 @@ const storage = multer.diskStorage({
     cb(null, file.originalname);
   },
 });
-const upload = multer({ storage: storage });
+const upload = multer({ storage });
 
 app.post("/auth/register", upload.single("picture"), verifyToken, register);
-app.post("/posts", upload.single("picture"), verifyToken, createPost)
+app.post("/posts", upload.single("picture"), verifyToken, createPost);
 app.use("/auth", authRoutes);
 app.use("/users", userRoutes);
 app.use("/posts", postRoutes);
