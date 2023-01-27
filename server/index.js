@@ -1,4 +1,4 @@
-import express from 'express'
+import express from "express";
 import bodyParser from "body-parser";
 import mongoose from "mongoose";
 import cors from "cors";
@@ -11,9 +11,12 @@ import authRoutes from "./routes/auth.js";
 import { fileURLToPath } from "url";
 import { register } from "./controller/auth.js";
 import { verifyToken } from "./middleware/auth.js";
-import  userRoutes  from "./routes/users.js";
-import  postRoutes  from "./routes/posts.js";
+import userRoutes from "./routes/users.js";
+import postRoutes from "./routes/posts.js";
 import { createPost } from "./controller/posts.js";
+import User from "./models/User.js";
+import Post from "./models/Post.js";
+import { users, posts } from "./Data/index.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -37,15 +40,15 @@ const storage = multer.diskStorage({
 });
 const upload = multer({ storage });
 
-app.post("/auth/register", upload.single("picture"), verifyToken, register);
-app.post("/posts", upload.single("picture"), verifyToken, createPost);
+app.post("/auth/register", upload.single("picture"), register);
+app.post("/posts", verifyToken, upload.single("picture"), createPost);
+
 app.use("/auth", authRoutes);
 app.use("/users", userRoutes);
 app.use("/posts", postRoutes);
 
 const PORT = process.env.PORT || 6001;
 
-mongoose.set("strictQuery", false);
 mongoose
   .connect(process.env.MONGO_URL, {
     useNewUrlParser: true,
@@ -54,6 +57,9 @@ mongoose
   .then(() => {
     app.listen(PORT, () => {
       console.log(`Running on port ${PORT}`);
+
+      // User.insertMany(users);
+      // Post.insertMany(posts);
     });
   })
   .catch((error) => {

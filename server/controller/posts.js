@@ -48,7 +48,7 @@ export const likePost = async (req, res) => {
     const { id } = req.params;
     const { userId } = req.body;
     const post = await Post.find(id);
-    const isLiked = post.likes.get(userId);
+    const isLiked = await post.likes.get(userId);
 
     if (isLiked) {
       post.likes.delete(userId);
