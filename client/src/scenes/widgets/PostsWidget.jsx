@@ -9,20 +9,23 @@ const PostsWidget = ({ userId, isProfile = false }) => {
   const token = useSelector((state) => state.token);
 
   const getPosts = async () => {
-    const response = fetch("http://localhost:3001/posts", {
+    const userData = await fetch("http://localhost:3001/posts", {
       method: "GET",
       headers: { Authorization: `Bearer ${token}` },
     });
-    const data = await response.json();
+    const data = await userData.json();
     dispatch(setPosts({ posts: data }));
   };
 
   const getUserPosts = async () => {
-    const response = fetch(`http://localhost:3001/posts/${userId}/posts`, {
-      method: "GET",
-      headers: { Authorization: `Bearer ${token}` },
-    });
-    const data = await response.json();
+    const userData = await fetch(
+      `http://localhost:3001/posts/${userId}/posts`,
+      {
+        method: "GET",
+        headers: { Authorization: `Bearer ${token}` },
+      }
+    );
+    const data = await userData.json();
     dispatch(setPosts({ posts: data }));
   };
 

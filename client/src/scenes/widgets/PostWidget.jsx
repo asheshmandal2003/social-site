@@ -6,7 +6,7 @@ import {
 } from "@mui/icons-material";
 import { Box, Divider, IconButton, Typography, useTheme } from "@mui/material";
 import FlexBetween from "components/FlexBetween";
-import Friend from "components/Friends";
+// import Friend from "components/Friends";
 import WidgetWrapper from "components/WidgetWrapper";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -49,12 +49,12 @@ const PostWidget = ({
 
   return (
     <WidgetWrapper m="2rem 0">
-      <Friend
+      {/* <Friend
         friendId={postUserId}
         name={name}
         subtitle={location}
         userPicturepath={userPicturePath}
-      />
+      /> */}
       <Typography color={main} sx={{ mt: "1rem" }}>
         {description}
       </Typography>

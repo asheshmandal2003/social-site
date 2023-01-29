@@ -18,7 +18,7 @@ export const users = [
     lastName: "me",
     email: "aaaaaaa@gmail.com",
     password: "$2b$10$dsasdgsagasda//G9JxQ4bQ8KXf4OAIe/X/AK9skyWUy",
-    picturePath: "p11.jpeg",
+    picturePath: "post1.png",
     friends: [],
     location: "San Fran, CA",
     occupation: "Software Engineer",
@@ -34,7 +34,7 @@ export const users = [
     lastName: "Ralph",
     email: "thataaa@gmail.com",
     password: "$!FEAS@!O)_IDJda//G9JxQ4bQ8KXf4OAIe/X/AK9skyWUy",
-    picturePath: "p3.jpeg",
+    picturePath: "post3.png",
     friends: [],
     location: "New York, CA",
     occupation: "Degenerate",
@@ -50,7 +50,7 @@ export const users = [
     lastName: "Guy",
     email: "someguy@gmail.com",
     password: "da39a3ee5e6b4b0d3255bfef95601890afd80709",
-    picturePath: "p4.jpeg",
+    picturePath: "post4.jpg",
     friends: [],
     location: "Canada, CA",
     occupation: "Data Scientist Hacker",
@@ -66,7 +66,7 @@ export const users = [
     lastName: "Doing",
     email: "whatchadoing@gmail.com",
     password: "$2b$10$dsasdgsagasda//G9JxQ4bQ8KXf4OAIe/X/AK9skyWUy",
-    picturePath: "p6.jpeg",
+    picturePath: "post6.jpg",
     friends: [],
     location: "Korea, CA",
     occupation: "Educator",
@@ -82,7 +82,7 @@ export const users = [
     lastName: "Doe",
     email: "janedoe@gmail.com",
     password: "$2b$10$dsasdgsagasda//G9JxQ4bQ8KXf4OAIe/X/AK9skyWUy",
-    picturePath: "p5.jpeg",
+    picturePath: "post5.png",
     friends: [],
     location: "Utah, CA",
     occupation: "Hacker",
@@ -98,7 +98,7 @@ export const users = [
     lastName: "Dunn",
     email: "harveydunn@gmail.com",
     password: "$2b$10$dsasdgsagasda//G9JxQ4bQ8KXf4OAIe/X/AK9skyWUy",
-    picturePath: "p7.jpeg",
+    picturePath: "post7.jpg",
     friends: [],
     location: "Los Angeles, CA",
     occupation: "Journalist",
@@ -114,7 +114,7 @@ export const users = [
     lastName: "Vowel",
     email: "carlyvowel@gmail.com",
     password: "$2b$10$dsasdgsagasda//G9JxQ4bQ8KXf4OAIe/X/AK9skyWUy",
-    picturePath: "p8.jpeg",
+    picturePath: "post2.jpg",
     friends: [],
     location: "Chicago, IL",
     occupation: "Nurse",
@@ -130,7 +130,7 @@ export const users = [
     lastName: "Dunn",
     email: "jessicadunn@gmail.com",
     password: "$2b$10$dsasdgsagasda//G9JxQ4bQ8KXf4OAIe/X/AK9skyWUy",
-    picturePath: "p9.jpeg",
+    picturePath: "post1.png",
     friends: [],
     location: "Washington, DC",
     occupation: "A Student",
@@ -151,7 +151,7 @@ export const posts = [
     location: "New York, CA",
     description: "Some really long random description",
     picturePath: "post1.jpeg",
-    userPicturePath: "p3.jpeg",
+    userPicturePath: "post3.png",
     likes: new Map([
       [userIds[0], true],
       [userIds[2], true],
@@ -173,7 +173,7 @@ export const posts = [
     description:
       "Another really long random description. This one is longer than the previous one.",
     picturePath: "post2.jpeg",
-    userPicturePath: "p6.jpeg",
+    userPicturePath: "post6.jpg",
     likes: new Map([
       [userIds[7], true],
       [userIds[4], true],
@@ -196,7 +196,7 @@ export const posts = [
     description:
       "This is the last really long random description. This one is longer than the previous one.",
     picturePath: "post3.jpeg",
-    userPicturePath: "p5.jpeg",
+    userPicturePath: "post5.png",
     likes: new Map([
       [userIds[1], true],
       [userIds[6], true],
@@ -220,7 +220,7 @@ export const posts = [
     description:
       "This is the last really long random description. This one is longer than the previous one. Man I'm bored. I'm going to keep typing until I run out of things to say.",
     picturePath: "post4.jpeg",
-    userPicturePath: "p7.jpeg",
+    userPicturePath: "post7.jpeg",
     likes: new Map([
       [userIds[1], true],
       [userIds[6], true],
@@ -244,7 +244,7 @@ export const posts = [
     description:
       "Just a short description. I'm tired of typing. I'm going to play video games now.",
     picturePath: "post5.jpeg",
-    userPicturePath: "p8.jpeg",
+    userPicturePath: "post1.png",
     likes: new Map([
       [userIds[1], true],
       [userIds[3], true],
@@ -268,7 +268,7 @@ export const posts = [
     description:
       "For the last time, I'm going to play video games now. I'm tired of typing. I'm going to play video games now.",
     picturePath: "post6.jpeg",
-    userPicturePath: "p9.jpeg",
+    userPicturePath: "post4.jpg",
     likes: new Map([
       [userIds[1], true],
       [userIds[2], true],

@@ -3,7 +3,6 @@ import {
   EditOutlined,
   LocationOnOutlined,
   WorkOutlineOutlined,
-  CurtainsRounded,
 } from "@mui/icons-material";
 import TwitterIcon from "@mui/icons-material/Twitter";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
@@ -15,7 +14,7 @@ import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-const UserWidget = ({ userId, picturePath }) => {
+const UserWidget = ({ userId }) => {
   const [user, setUser] = useState(null);
   const { palette } = useTheme();
   const navigate = useNavigate();
@@ -24,16 +23,16 @@ const UserWidget = ({ userId, picturePath }) => {
   const medium = palette.neutral.medium;
   const main = palette.neutral.main;
 
-  const getuser = async () => {
-    const response = await fetch(`http://localhost:3001/users/${userId}`, {
+  const getUser = async () => {
+    const userData = await fetch(`http://localhost:3001/users/${userId}`, {
       method: "GET",
       headers: { Authorization: `Bearer ${token}` },
     });
-    const data = response.json();
+    const data = await userData.json();
     setUser(data);
   };
   useEffect(() => {
-    getuser();
+    getUser();
   }, []);
 
   if (!user) {
@@ -41,13 +40,14 @@ const UserWidget = ({ userId, picturePath }) => {
   }
 
   const {
-    firstNmae,
+    firstName,
     lastName,
     location,
     occupation,
     viewedProfile,
     impressions,
     friends,
+    picturePath,
   } = user;
 
   return (
@@ -73,9 +73,9 @@ const UserWidget = ({ userId, picturePath }) => {
                 },
               }}
             >
-              {firstNmae} {lastName}
+              {firstName} {lastName}
             </Typography>
-            <Typography color={medium}>friends</Typography>
+            <Typography color={medium}>{friends.length} friends</Typography>
           </Box>
         </FlexBetween>
         <ManageAccountsOutlined />
@@ -100,7 +100,7 @@ const UserWidget = ({ userId, picturePath }) => {
         <FlexBetween mb="0.5rem">
           <Typography color={medium}>Who's viewed your profile</Typography>
           <Typography color={medium} fontWeight="500">
-            {user.viewedProfile}
+            {viewedProfile}
           </Typography>
         </FlexBetween>
         <FlexBetween mb="0.5rem">
