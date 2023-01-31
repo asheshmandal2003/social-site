@@ -6,8 +6,6 @@ import {
   ImageOutlined,
   MicOutlined,
   MoreHorizOutlined,
-  ImageAspectRatioOutlined,
-  InsightsOutlined,
 } from "@mui/icons-material";
 import {
   Box,
@@ -15,25 +13,23 @@ import {
   Typography,
   InputBase,
   useTheme,
-  Button,
   IconButton,
   useMediaQuery,
 } from "@mui/material";
+import Button from "@mui/material/Button";
 import FlexBetween from "components/FlexBetween";
 import Dropzone from "react-dropzone";
 import UserImage from "components/UserImage";
 import WidgetWrapper from "components/WidgetWrapper";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { setPosts } from "state";
-import widgets from ".";
-import { padding, width } from "@mui/system";
-
+import { setPost } from "state";
 const MyPostWidget = ({ picturePath }) => {
   const dispatch = useDispatch();
+  const [input, setInput] = useState("");
   const [isImage, setIsImage] = useState(false);
   const [image, setImage] = useState(null);
-  const [post, setPost] = useState("");
+  const [postDescription, setPostDescription] = useState("");
   const { palette } = useTheme();
   const { _id } = useSelector((state) => state.user);
   const token = useSelector((state) => state.token);
@@ -44,22 +40,28 @@ const MyPostWidget = ({ picturePath }) => {
   const handlepost = async () => {
     const formData = new FormData();
     formData.append("userId", _id);
-    formData.append("description", post);
+    formData.append("description", postDescription);
     if (image) {
       formData.append("picture", image);
       formData.append("picturePath", image.name);
     }
 
-    const response = await fetch(`http://localhost:30001/posts`, {
+    const response = await fetch(`http://localhost:3001/posts`, {
       method: "POST",
-      headers: { Authorization: `Bearer ${token}` },
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
       body: formData,
     });
 
-    const posts = response.json();
-    dispatch(setPosts({ posts }));
+    const posts = await response.json();
+    dispatch(setPost({ posts }));
     setImage(null);
-    setPost("");
+    setPostDescription("");
+  };
+
+  const handleChange = (event) => {
+    setInput(event.target.value);
   };
 
   return (
@@ -68,8 +70,8 @@ const MyPostWidget = ({ picturePath }) => {
         <UserImage image={picturePath} />
         <InputBase
           placeholder="What's on your mind..."
-          onChange={(e) => e.target.value}
-          value={post}
+          onChange={handleChange}
+          value={input}
           sx={{
             width: "100%",
             backgroundColor: palette.neutral.light,
@@ -178,8 +180,8 @@ const MyPostWidget = ({ picturePath }) => {
         )}
 
         <Button
-          disabled={!post}
           onClick={handlepost}
+          disabled={!image}
           sx={{
             color: palette.background.alt,
             backgroundColor: palette.primary.main,
