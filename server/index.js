@@ -17,7 +17,6 @@ import { createPost } from "./controller/posts.js";
 import User from "./models/User.js";
 import Post from "./models/Post.js";
 import { users, posts } from "./Data/index.js";
-import Pusher from "pusher";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -33,7 +32,10 @@ app.use("/assets", express.static(path.join(__dirname, "public/assets")));
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, "/Users/ashes/OneDrive/Documents/social-site-application/social-site/client/public/assets");
+    cb(
+      null,
+      "/Users/ashes/OneDrive/Documents/social-site-application/social-site/client/public/assets"
+    );
   },
   filename: function (req, file, cb) {
     cb(null, file.originalname);
@@ -42,8 +44,8 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage: storage });
 
-app.post("/auth/register", upload.single("picture"), register);
-app.post("/posts", verifyToken, upload.single("picture"), createPost);
+app.post("/auth/register", upload.single("picture"), verifyToken, register);
+app.post("/posts", upload.single("picture"), createPost);
 
 app.use("/auth", authRoutes);
 app.use("/users", userRoutes);

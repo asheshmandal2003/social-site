@@ -5,16 +5,16 @@ export const createPost = async (req, res) => {
   try {
     const { userId, description, picturePath } = req.body;
     const user = await User.findById(userId);
-    const newPost = new Post({
+    const newPost = await new Post({
       userId,
-      firstNmae: user.firstName,
+      firstName: user.firstName,
       lastName: user.lastName,
       location: user.location,
       description,
       userPicturePath: user.picturePath,
       picturePath,
       likes: {},
-      comments: [],
+      posts: [],
     });
     await newPost.save();
     const post = await Post.find();
