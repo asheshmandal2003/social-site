@@ -1,5 +1,6 @@
 import {
   ChatBubbleOutlined,
+  CleaningServices,
   FavoriteBorderOutlined,
   FavoriteOutlined,
   ShareOutlined,
@@ -35,6 +36,7 @@ const PostWidget = ({
   const primary = palette.primary.main;
 
   const patchLike = async () => {
+    console.log("Pressed");
     const response = await fetch(`http://localhost:3001/posts/${postId}/like`, {
       method: "PATCH",
       headers: {
@@ -43,27 +45,28 @@ const PostWidget = ({
       },
       body: JSON.stringify({ userId: loggedInUserId }),
     });
+    console.log(response);
     const updatedPost = await response.json();
     dispatch(setPost({ post: updatedPost }));
   };
 
   return (
     <WidgetWrapper m="2rem 0">
-      {/* <Friend
+      <Friend
         friendId={postUserId}
         name={name}
         subtitle={location}
         userPicturepath={userPicturePath}
-      /> */}
+      />
       <Typography color={main} sx={{ mt: "1rem" }}>
         {description}
       </Typography>
       <img
-        width={"100%"}
-        height="100%"
+        width="100%"
+        height="auto"
         style={{ borderRadius: "0.75rem", marginTop: "0.75rem" }}
         src={`http://localhost:3001/assets/${picturePath}`}
-        alt="Image"
+        alt="post"
       />
       <FlexBetween mt="0.25rem">
         <FlexBetween gap="1rem" />
