@@ -150,7 +150,7 @@ export const posts = [
     lastName: "Ralph",
     location: "New York, CA",
     description: "Some really long random description",
-    picturePath: "post1.jpeg",
+    picturePath: "post3.png",
     userPicturePath: "post3.png",
     likes: new Map([
       [userIds[0], true],
@@ -172,7 +172,7 @@ export const posts = [
     location: "Korea, CA",
     description:
       "Another really long random description. This one is longer than the previous one.",
-    picturePath: "post2.jpeg",
+    picturePath: "post6.jpg",
     userPicturePath: "post6.jpg",
     likes: new Map([
       [userIds[7], true],
@@ -195,7 +195,7 @@ export const posts = [
     location: "Utah, CA",
     description:
       "This is the last really long random description. This one is longer than the previous one.",
-    picturePath: "post3.jpeg",
+    picturePath: "post5.png",
     userPicturePath: "post5.png",
     likes: new Map([
       [userIds[1], true],
@@ -219,7 +219,7 @@ export const posts = [
     location: "Los Angeles, CA",
     description:
       "This is the last really long random description. This one is longer than the previous one. Man I'm bored. I'm going to keep typing until I run out of things to say.",
-    picturePath: "post4.jpeg",
+    picturePath: "post7.jpg",
     userPicturePath: "post7.jpeg",
     likes: new Map([
       [userIds[1], true],
@@ -243,7 +243,7 @@ export const posts = [
     location: "Chicago, IL",
     description:
       "Just a short description. I'm tired of typing. I'm going to play video games now.",
-    picturePath: "post5.jpeg",
+    picturePath: "post2.jpg",
     userPicturePath: "post1.png",
     likes: new Map([
       [userIds[1], true],
@@ -267,7 +267,7 @@ export const posts = [
     location: "Washington, DC",
     description:
       "For the last time, I'm going to play video games now. I'm tired of typing. I'm going to play video games now.",
-    picturePath: "post6.jpeg",
+    picturePath: "post1.png",
     userPicturePath: "post4.jpg",
     likes: new Map([
       [userIds[1], true],

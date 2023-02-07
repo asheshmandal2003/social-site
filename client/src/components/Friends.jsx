@@ -6,12 +6,13 @@ import { setFriends } from "state";
 import FlexBetween from "./FlexBetween";
 import UserImage from "./UserImage";
 
-const Friend = ({ friendId, name, subtitle, userPicturepath }) => {
+const Friend = ({ friendId, name, location, image }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { _id } = useSelector((state) => state.user);
   const token = useSelector((state) => state.token);
   const friends = useSelector((state) => state.user.friends);
+  const user = useSelector((state) => state.user);
 
   const { palette } = useTheme();
   const primaryLight = palette.primary.light;
@@ -33,14 +34,16 @@ const Friend = ({ friendId, name, subtitle, userPicturepath }) => {
         },
       }
     );
+    console.log(response);
     const data = await response.json();
+    console.log(data);
     dispatch(setFriends({ friends: data }));
   };
 
   return (
     <FlexBetween>
       <FlexBetween gap="1rem">
-        <UserImage image={userPicturepath} size="55px" />
+        <UserImage image={image} size="55px" />
         <Box
           onClick={() => {
             navigate(`/profile/${friendId}`);
@@ -61,14 +64,15 @@ const Friend = ({ friendId, name, subtitle, userPicturepath }) => {
             {name}
           </Typography>
           <Typography color={medium} fontSize="0.75rem">
-            {subtitle}
+            {location}
           </Typography>
         </Box>
       </FlexBetween>
 
       <IconButton
-        onClick={() => patchFriend()}
+        onClick={patchFriend}
         sx={{ backgroundColor: primaryLight, p: "0.6rem" }}
+        disabled={user._id}
       >
         {isFriend ? (
           <PersonRemoveOutlined sx={{ color: primaryDark }} />

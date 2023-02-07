@@ -1,6 +1,5 @@
 import {
   ChatBubbleOutlined,
-  CleaningServices,
   FavoriteBorderOutlined,
   FavoriteOutlined,
   ShareOutlined,
@@ -56,7 +55,7 @@ const PostWidget = ({
         friendId={postUserId}
         name={name}
         subtitle={location}
-        userPicturepath={userPicturePath}
+        image={userPicturePath}
       />
       <Typography color={main} sx={{ mt: "1rem" }}>
         {description}
@@ -65,7 +64,7 @@ const PostWidget = ({
         width="100%"
         height="auto"
         style={{ borderRadius: "0.75rem", marginTop: "0.75rem" }}
-        src={`http://localhost:3001/assets/${picturePath}`}
+        src={`http://localhost:3000/assets/${picturePath}`}
         alt="post"
       />
       <FlexBetween mt="0.25rem">
@@ -73,7 +72,7 @@ const PostWidget = ({
         <FlexBetween gap="0.3rem">
           <IconButton onClick={patchLike}>
             {isLiked ? (
-              <FavoriteOutlined sx={{ color: primary }} />
+              <FavoriteOutlined sx={{ color: "#FF3232" }} />
             ) : (
               <FavoriteBorderOutlined />
             )}

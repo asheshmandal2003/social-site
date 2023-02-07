@@ -28,14 +28,11 @@ app.use(morgan("common"));
 app.use(bodyParser.json({ limit: "30mb", extended: true }));
 app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }));
 app.use(cors());
-app.use("/assets", express.static(path.join(__dirname, "public/assets")));
+app.use("/assets", express.static(path.join(__dirname, "/assets")));
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(
-      null,
-      "/Users/ashes/OneDrive/Documents/social-site-application/social-site/client/public/assets"
-    );
+    cb(null, "/assets");
   },
   filename: function (req, file, cb) {
     cb(null, file.originalname);
@@ -44,8 +41,8 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage: storage });
 
-app.post("/auth/register", upload.single("picture"), verifyToken, register);
-app.post("/posts", upload.single("picture"), createPost);
+app.post("/auth/register", upload.single("picture"), register);
+app.post("/posts", upload.single("picture"), verifyToken, createPost);
 
 app.use("/auth", authRoutes);
 app.use("/users", userRoutes);

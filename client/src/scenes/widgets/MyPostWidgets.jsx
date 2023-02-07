@@ -23,7 +23,7 @@ import UserImage from "components/UserImage";
 import WidgetWrapper from "components/WidgetWrapper";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { setPost } from "state";
+import { setPosts } from "state";
 const MyPostWidget = ({ picturePath }) => {
   const dispatch = useDispatch();
   const [input, setInput] = useState("");
@@ -48,14 +48,12 @@ const MyPostWidget = ({ picturePath }) => {
 
     const response = await fetch(`http://localhost:3001/posts`, {
       method: "POST",
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
+      headers: { Authorization: `Bearer ${token}` },
       body: formData,
     });
 
     const posts = await response.json();
-    dispatch(setPost({ posts }));
+    dispatch(setPosts({ posts }));
     setImage(null);
     setPostDescription("");
   };

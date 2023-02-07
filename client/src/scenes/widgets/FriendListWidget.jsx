@@ -12,8 +12,7 @@ const FriendListWidget = ({ userId }) => {
   const friends = useSelector((state) => state.user.friends);
 
   useEffect(() => {
-    console.log("useEffect called");
-    console.log(friends);
+    console.log("useEffect called")
     const getfriends = async () => {
       const response = await fetch(
         `http://localhost:3001/users/${userId}/friends`,
@@ -22,6 +21,7 @@ const FriendListWidget = ({ userId }) => {
           headers: { Authorization: `Bearer ${token}` },
         }
       );
+      console.log(response)
       const data = await response.json();
       dispatch(setFriends({ friends: data }));
     };
@@ -37,14 +37,14 @@ const FriendListWidget = ({ userId }) => {
         sx={{ mb: "1.5rem" }}
       >
         Friend List
-        <Box display={"flex"} flexDirection="column" gap={"1.5rem"} height="auto">
+        <Box display={"flex"} flexDirection="column" gap={"1.5rem"} height="100%">
           {friends.map((friend) => (
             <Friend
               key={friend._id}
               friendId={friend._id}
               name={`${friend.firstName} ${friend.lastName}`}
-              subtitle={friend.location}
-              userPicturepath={friend.picturePath}
+              location={friend.location}
+              image={friend.picturePath}
             />
           ))}
         </Box>

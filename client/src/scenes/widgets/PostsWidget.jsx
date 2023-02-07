@@ -9,6 +9,8 @@ const PostsWidget = ({ userId, isProfile }) => {
   const token = useSelector((state) => state.token);
 
   useEffect(() => {
+    console.log(token)
+    console.log(posts);
     if (isProfile) {
       const getUserPosts = async () => {
         const userPosts = await fetch(
@@ -45,8 +47,8 @@ const PostsWidget = ({ userId, isProfile }) => {
           lastName,
           description,
           location,
-          userPicturePath,
           picturePath,
+          userPicturePath,
           likes,
           comments,
         }) => (

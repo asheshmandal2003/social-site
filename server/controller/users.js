@@ -43,6 +43,9 @@ export const addRemoveFriend = async (req, res) => {
       user.friends.push(friendId);
       userFriend.friends.push(id);
     }
+    await user.save();
+    await userFriend.save();
+
     const friends = await Promise.all(
       user.friends.map((id) => User.findById(id))
     );
@@ -51,6 +54,8 @@ export const addRemoveFriend = async (req, res) => {
         return { _id, firstName, lastName, occupation, location, picturePath };
       }
     );
+    console.log(formattedFriend);
+    
     res.status(200).json(formattedFriend);
   } catch (error) {
     res.status(404).json({ error: error.message });
